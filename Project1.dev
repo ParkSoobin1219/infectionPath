@@ -23,13 +23,13 @@ OverrideOutputName=
 HostApplication=
 UseCustomMakefile=0
 CustomMakefile=
-CommandLine=
+CommandLine=patientInfo_sample.txt
 Folders=
 IncludeVersionInfo=0
 SupportXPThemes=0
 CompilerSet=0
-CompilerSettings=0000000000000000000000000
-UnitCount=5
+CompilerSettings=0000000000000000001000000
+UnitCount=6
 
 [VersionInfo]
 Major=1
@@ -96,6 +96,15 @@ CompileCpp=0
 Folder=
 Compile=1
 Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit6]
+FileName=patientInfo_sample.txt
+Folder=
+Compile=0
+Link=0
 Priority=1000
 OverrideBuildCmd=0
 BuildCmd=

@@ -98,9 +98,31 @@ char countryName[N_PLACE+1][MAX_PLACENAME] =
     "Unrecognized"
 };
 
+
+// 도시 넘버에 맞는 도시 스트링을 출력해주는 함수
 char* ifctele_getPlaceName(int placeIndex)
 {
 	return countryName[placeIndex];
 };
-// 도시 넘버에 맞는 도시 스트링을 출력해주는 함수
+
+
+void ifctele_printElement(void* obj) // 이중 포인ㅌ터인듯...?  
+{
+	printf("---------------------------------------\n");
+	//printf("Patient index : %d\n", *obj[0]);
+	//printf("Patient age : %d\n", *obj[1]);
+	//printf("Detected time : %d\n", *obj[2]);
+	//printf("Path History : %s(%d)-->%s(%d)-->%s(%d)-->%s(%d)\n", );
+	printf("---------------------------------------\n");
+	
+}
+
+
+
+void* ifctele_genElement(int index, int age, unsigned int detected_time, int history_place[N_HISTORY])
+{
+	
+	
+	
+}
  

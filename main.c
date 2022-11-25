@@ -19,16 +19,24 @@
 #define TIME_HIDE           2
 
 
-int trackInfester(int patient_no, int *detected_time, int *place);
+int trackInfester(int patient_no, int *detected_time, int *place); //prototyping the trackInfester function
+
 int main(int argc, const char * argv[]) {
     
-    int menu_selection;
-    void *ifct_element;
-    FILE* fp;
-    int pIndex, age, time;
-    int placeHist[N_HISTORY];
+    int menu_selection; //button number
+    int *ifct_element;
+	FILE* fp;
+    //int pIndex, age, time;
+    //int placeHist[N_HISTORY];
+    struct patientinfotxt {
+		int pIndex, age, time;
+		int placeHist[N_HISTORY];
+	};
+	
+	struct patientinfotxt h[5];
     
-    //------------- 1. loading patient info file ------------------------------
+    
+//------------------------------- 1. loading patient info file ------------------------------
     //1-1. FILE pointer open
     if (argc != 2)
     {
@@ -44,31 +52,61 @@ int main(int argc, const char * argv[]) {
     }
     
     
-    
-    //1-2. loading each patient informations
-    /*while(3==fscanf("3가지 읽기 형식지정자 ", 변수들))
+	//1-2. loading each patient informations
+	
+	int i=0;
+    while(!feof(fp))
 	{
-    	for()
-    	{
-    		fscanf();
-    		//나머지 5개 읽는 코드 
+		fscanf(fp, " %d %d %d", &h[i].pIndex, &h[i].age, &h[i].time);
+		int j;
+		for(j=0;j<N_HISTORY;j++){
+			fscanf(fp, " %d", &h[i].placeHist[j]);
 		}
+	    
+        i++;
+        if(feof(fp)) break;
 	}
-	*/
+	//fscanf test code!!
+	for(i=0;i<5;i++){
+		int j;
+		printf("%d번째 줄) %d %d %d ", i, h[i].pIndex, h[i].age, h[i].time);
+		for(j=0;j<N_HISTORY;j++)
+		  printf("%d ", h[i].placeHist[j]);
+		printf("\n");
+	}
+	
+    /* 교수님이 주신 fscanf code 
+	while(3==fscanf(fp, "%d, %d, %d", &pIndex, &age, &time))
+    {
+    		for(i=0;i<5;i++){
+    			fscanf(fp, "%d", &patientinfo[j][i]);
+    		//나머지 5개 읽는 코드
+			}
+    	    	 
+	}*/
+		
 	
     //1-3. FILE pointer close
     fclose(fp);
+	
     
-    {
-    	int place1, place2;
+    
+    
+    ////////////이동경로를 찍는 코드(reference)
+    {   int place1, place2;
     	
     	place1=3;//lA
     	place2=15;//Munich
     	
-    	printf("The first place is %s", ifctele_getPlaceName(place1)); //place1이 losangeles임을 보여주는 코드  
-	}//이동경로를 찍는 코드  
+    	printf("REFERENCE CODE!!!!! The first place is %s\n\n\n\n", ifctele_getPlaceName(place1)); //place1이 losangeles임을 보여주는 코드  
+	}  
+	
+	
+	
+	
     
-    
+//--------------------------------------2.Program 동작---------------------------------------------------- 
+
     do {
         printf("\n=============== INFECTION PATH MANAGEMENT PROGRAM (No. of patients : %i) =============\n", ifctdb_len());
         printf("1. Print details about a patient.\n");                      //MENU_PATIENT
@@ -89,19 +127,26 @@ int main(int argc, const char * argv[]) {
                 break;
                 
             case MENU_PATIENT:
-                
+                printf("Patient index :");
+                //scanf("%d", &pIndex);
+                ifctele_printElement(ifct_element);
                 break;
                 
             case MENU_PLACE:
-                
+                printf("Place Name :");
+                //scanf("%d", &); 
                 break;
                 
             case MENU_AGE:
-                
+                printf("minimal age :");
+                //scanf("%d", &);
+                printf("maximal age :");
+                //scanf("%d", &);
                 break;
                 
             case MENU_TRACK:
-                    
+                printf("Patient index :");
+                //scanf("%d", &);    
                 break;
                 
             default:
