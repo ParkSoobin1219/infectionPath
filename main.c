@@ -19,14 +19,14 @@
 #define TIME_HIDE           2
 
 
-int trackInfester(int patient_no, int *detected_time, int *place); //prototyping the trackInfester function
+int trackInfester(int patient_no, int *detected_time, int *place);
 
 int main(int argc, const char * argv[]) {
     
     int menu_selection; //button number
     int *ifct_element;
 	FILE* fp;
-    //int pIndex, age, time;
+    int pIndex, age, time;
     //int placeHist[N_HISTORY];
     struct patientinfotxt {
 		int pIndex, age, time;
@@ -34,6 +34,7 @@ int main(int argc, const char * argv[]) {
 	};
 	
 	struct patientinfotxt h[5];
+    
     
     
 //------------------------------- 1. loading patient info file ------------------------------
@@ -114,7 +115,7 @@ int main(int argc, const char * argv[]) {
         printf("3. Print list of patients in a range of age.\n");          //MENU_AGE
         printf("4. Track the root of the infection\n");                     //MENU_TRACK
         printf("0. Exit.\n");                                               //MENU_EXIT
-        printf("=============== ------------------------------------------------------- =============\n\n");
+        printf("========================================================================================\n\n");
         
         printf("Select a menu :");
         scanf("%d", &menu_selection);
@@ -128,8 +129,9 @@ int main(int argc, const char * argv[]) {
                 
             case MENU_PATIENT:
                 printf("Patient index :");
-                //scanf("%d", &pIndex);
-                ifctele_printElement(ifct_element);
+                scanf("%d", &pIndex);
+                ifct_element=h;
+                ifctele_printElement(ifct_element, pIndex);
                 break;
                 
             case MENU_PLACE:

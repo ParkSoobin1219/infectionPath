@@ -106,14 +106,17 @@ char* ifctele_getPlaceName(int placeIndex)
 };
 
 
-void ifctele_printElement(void* obj) // 이중 포인ㅌ터인듯...?  
+void ifctele_printElement(void* obj, int i) 
 {
-	printf("---------------------------------------\n");
-	//printf("Patient index : %d\n", *obj[0]);
-	//printf("Patient age : %d\n", *obj[1]);
-	//printf("Detected time : %d\n", *obj[2]);
-	//printf("Path History : %s(%d)-->%s(%d)-->%s(%d)-->%s(%d)\n", );
-	printf("---------------------------------------\n");
+	int* ip;
+	ip=obj;
+	
+	printf("--------------------------------------------------------------\n");
+	printf("Patient index : %d\n", ip[0+i*8]);
+	printf("Patient age : %d\n", ip[1+i*8]);
+	printf("Detected time : %d\n", ip[2+i*8]);
+	printf("Path History : (%d)-->(%d)-->(%d)-->(%d)-->(%d)\n", ip[3+i*8], ip[4+i*8], ip[5+i*8], ip[6+i*8], ip[7+i*8] );
+	printf("--------------------------------------------------------------\n");
 	
 }
 
