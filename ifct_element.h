@@ -16,11 +16,11 @@ void* ifctele_genElement(int index, int age, unsigned int detected_time, int his
 
 char* ifctele_getPlaceName(int placeIndex); // 인덱스를 넣으면 도시 이름을 string 으로 뱉어주는 함수 (0)
 
-int ifctele_getHistPlaceIndex(void* obj, int index);
+int ifctele_getHistPlaceIndex(void* obj, int index); //
 
 unsigned int ifctele_getinfestedTime(void* obj);
 
-int ifctele_getAge(void* obj);
+int ifctele_getAge(void* obj, int m, int M); // 나이 조건 충족하면 출력해주는 함수  
 
-void ifctele_printElement(void* obj, int i);
+void ifctele_printElement(void* obj, int i); // 환자 정보 출력해주는 함수  
 #endif /* ifct_element_h */

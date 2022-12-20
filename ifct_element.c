@@ -153,6 +153,19 @@ int ifctele_getHistPlaceIndex(void* obj, int index){
 	return pIndex;
 }
 
+int ifctele_getAge(void* obj, int m, int M){
+	int* ip;
+	ip=obj;
+	int i;
+	for(i=0;i<5;i++)
+	{
+		if(ip[i*8+1]>=m && ip[i*8+1]<=M)
+		{
+		  ifctele_printElement(obj, i);
+		  printf("\n");
+		}  
+	}
+}
 
 void* ifctele_genElement(int index, int age, unsigned int detected_time, int history_place[N_HISTORY])
 {

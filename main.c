@@ -39,6 +39,8 @@ int main(int argc, const char * argv[]) {
     
     
     
+    
+    
 //------------------------------- 1. loading patient info file ------------------------------
     //1-1. FILE pointer open
     if (argc != 2)
@@ -55,8 +57,8 @@ int main(int argc, const char * argv[]) {
     }
     
     
+    
 	//1-2. loading each patient informations
-	
 	int i=0;
     while(!feof(fp))
 	{
@@ -70,43 +72,12 @@ int main(int argc, const char * argv[]) {
         if(feof(fp)) break;
 	}
 	
-	//fscanf test code!!
-	/*
-	for(i=0;i<5;i++){
-		int j;
-		printf("%d번째 줄) %d %d %d ", i, h[i].pIndex, h[i].age, h[i].time);
-		for(j=0;j<N_HISTORY;j++)
-		  printf("%d ", h[i].placeHist[j]);
-		printf("\n");
-	}
-	*/
 	
-    /* 교수님이 주신 fscanf code 
-	while(3==fscanf(fp, "%d, %d, %d", &pIndex, &age, &time))
-    {
-    		for(i=0;i<5;i++){
-    			fscanf(fp, "%d", &patientinfo[j][i]);
-    		//나머지 5개 읽는 코드
-			}
-    	    	 
-	}*/
-		
 	
     //1-3. FILE pointer close
     fclose(fp);
 	
     
-    
-    
-    ////////////이동경로를 찍는 코드(reference)
-    {   int place1, place2;
-    	
-    	place1=3;//lA
-    	place2=15;//Munich
-    	
-    	printf("REFERENCE CODE!!!!! The first place is %s\n\n\n\n", ifctele_getPlaceName(place1)); //place1이 losangeles임을 보여주는 코드  
-	}  
-	
 	
 	
 	
@@ -114,6 +85,7 @@ int main(int argc, const char * argv[]) {
 //--------------------------------------2.Program 동작---------------------------------------------------- 
 
     do {
+    	printf("\n");
         printf("\n=============== INFECTION PATH MANAGEMENT PROGRAM (No. of patients : %i) =============\n", ifctdb_len());
         printf("1. Print details about a patient.\n");                      //MENU_PATIENT
         printf("2. Print list of patients infected at a place.\n");        //MENU_PLACE
@@ -154,6 +126,8 @@ int main(int argc, const char * argv[]) {
                 scanf("%d", &mAge);
                 printf("maximal age :");
                 scanf("%d", &MAge);
+                ifct_element=h;
+                ifctele_getAge(ifct_element, mAge, MAge);
                 break;
                 
             case MENU_TRACK:
