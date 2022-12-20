@@ -105,21 +105,53 @@ char* ifctele_getPlaceName(int placeIndex)
 	return countryName[placeIndex];
 };
 
+int ifctele_getPlaceIndex(char arr[]){
+	int index; //입력받은 장소에 해당하는 index 저장할 변수 
+	int i,j; //for문 돌릴 변수 
+	for(i=0;i<N_PLACE;i++)
+	{
+		if(strcmp(countryName[i], arr)==0)
+	      index=i;
+	}
+	
+	return index;
+}
+
 
 void ifctele_printElement(void* obj, int i) 
 {
 	int* ip;
 	ip=obj;
+	int j;
 	
-	printf("--------------------------------------------------------------\n");
+	printf("-----------------------------------------------------------------------------------\n");
 	printf("Patient index : %d\n", ip[0+i*8]);
 	printf("Patient age : %d\n", ip[1+i*8]);
-	printf("Detected time : %d\n", ip[2+i*8]);
-	printf("Path History : (%d)-->(%d)-->(%d)-->(%d)-->(%d)\n", ip[3+i*8], ip[4+i*8], ip[5+i*8], ip[6+i*8], ip[7+i*8] );
-	printf("--------------------------------------------------------------\n");
+	printf("Detected time : %dth\n", ip[2+i*8]);
+	printf("Path History :");
+	for(j=3;j<3+N_HISTORY;j++)
+	{
+		printf("%s(%dth)  ", ifctele_getPlaceName(ip[j+i*8]),ip[i*8+2]-7+j);
+
+	}
+	printf("\n");
+	printf("-----------------------------------------------------------------------------------\n");
 	
 }
 
+int ifctele_getHistPlaceIndex(void* obj, int index){
+	int* ip;
+	ip=obj;
+	int j; // for문 돌릴 변수  
+	int pIndex; //해당 환자의 인덱스 저장 
+	for(j=0;j<5;j++)
+	{
+		if(ip[j*8+7]==index)
+		 pIndex=j;
+	}; //받은 Index 값과 obj의 마지막 값 비교해서 같으면 
+	//그 변수에 해당하는 환자 인덱스 구하기
+	return pIndex;
+}
 
 
 void* ifctele_genElement(int index, int age, unsigned int detected_time, int history_place[N_HISTORY])

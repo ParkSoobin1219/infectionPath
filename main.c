@@ -26,7 +26,9 @@ int main(int argc, const char * argv[]) {
     int menu_selection; //button number
     int *ifct_element;
 	FILE* fp;
-    int pIndex, age, time;
+    int pIndex, age, time, placeIndex;
+    char investPlace[MAX_PLACENAME];
+    int mAge, MAge;
     //int placeHist[N_HISTORY];
     struct patientinfotxt {
 		int pIndex, age, time;
@@ -67,7 +69,9 @@ int main(int argc, const char * argv[]) {
         i++;
         if(feof(fp)) break;
 	}
+	
 	//fscanf test code!!
+	/*
 	for(i=0;i<5;i++){
 		int j;
 		printf("%d번째 줄) %d %d %d ", i, h[i].pIndex, h[i].age, h[i].time);
@@ -75,6 +79,7 @@ int main(int argc, const char * argv[]) {
 		  printf("%d ", h[i].placeHist[j]);
 		printf("\n");
 	}
+	*/
 	
     /* 교수님이 주신 fscanf code 
 	while(3==fscanf(fp, "%d, %d, %d", &pIndex, &age, &time))
@@ -136,14 +141,19 @@ int main(int argc, const char * argv[]) {
                 
             case MENU_PLACE:
                 printf("Place Name :");
-                //scanf("%d", &); 
+                scanf("%s", investPlace); 
+                placeIndex=ifctele_getPlaceIndex(investPlace);
+                ifct_element=h;
+                pIndex=ifctele_getHistPlaceIndex(ifct_element, placeIndex);
+                ifctele_printElement(ifct_element, pIndex);
+                printf("There is(are) %d patient(s) detected in %s\n", 1, ifctele_getPlaceName(placeIndex));
                 break;
                 
             case MENU_AGE:
                 printf("minimal age :");
-                //scanf("%d", &);
+                scanf("%d", &mAge);
                 printf("maximal age :");
-                //scanf("%d", &);
+                scanf("%d", &MAge);
                 break;
                 
             case MENU_TRACK:
