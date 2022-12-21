@@ -100,17 +100,20 @@ int main(int argc, const char * argv[]) {
         
         switch(menu_selection)
         {
+        	//종료 문구 출력 
             case MENU_EXIT:
                 printf("Exiting the program... Bye bye.\n");
                 break;
-                
+            
+			//patient index를 입력 받고 해당 환자의 정보 출력    
             case MENU_PATIENT:
                 printf("Patient index :");
                 scanf("%d", &pIndex);
                 ifct_element=h;
                 ifctele_printElement(ifct_element, pIndex);
                 break;
-                
+            
+			//place 를 입력받아 해당 장소에서 확진된 환자 출력 및 확진 환자 수 출력    
             case MENU_PLACE:
                 printf("Place Name :");
                 scanf("%s", investPlace); 
@@ -120,7 +123,8 @@ int main(int argc, const char * argv[]) {
                 ifctele_printElement(ifct_element, pIndex);
                 printf("There is(are) %d patient(s) detected in %s\n", 1, ifctele_getPlaceName(placeIndex));
                 break;
-                
+            
+			//최소,최대 나이 입력 받고 범위 내 나이의 환자 출력    
             case MENU_AGE:
                 printf("minimal age :");
                 scanf("%d", &mAge);
@@ -129,7 +133,8 @@ int main(int argc, const char * argv[]) {
                 ifct_element=h;
                 ifctele_getAge(ifct_element, mAge, MAge);
                 break;
-                
+            
+			//감염 경로 추적    
             case MENU_TRACK:
                 printf("Patient index :");
                 //scanf("%d", &);    
@@ -140,7 +145,7 @@ int main(int argc, const char * argv[]) {
                 break;
         }
     
-    } while(menu_selection != 0);
+    } while(menu_selection != 0); // 메뉴 exit을 누르기 전에는 계속 반복 
     
     
     return 0;

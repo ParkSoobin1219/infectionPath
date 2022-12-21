@@ -107,17 +107,20 @@ char* ifctele_getPlaceName(int placeIndex)
 
 int ifctele_getPlaceIndex(char arr[]){
 	int index; //입력받은 장소에 해당하는 index 저장할 변수 
-	int i,j; //for문 돌릴 변수 
+	int i,j; 
+	
+	//countrtname 과 입력 받은 배열을 비교해 같으면 인덱스 변수에 저장 
 	for(i=0;i<N_PLACE;i++)
 	{
 		if(strcmp(countryName[i], arr)==0)
 	      index=i;
 	}
 	
-	return index;
+	return index; // 저장한 인덱스를 반환 
 }
 
 
+//구조체에 있는 정보들을 정렬하여 프린트 
 void ifctele_printElement(void* obj, int i) 
 {
 	int* ip;
@@ -139,38 +142,40 @@ void ifctele_printElement(void* obj, int i)
 	
 }
 
+//입력받은 장소에 있는 환자의 인덱스를 반환해주는 함수 
 int ifctele_getHistPlaceIndex(void* obj, int index){
 	int* ip;
 	ip=obj;
-	int j; // for문 돌릴 변수  
-	int pIndex; //해당 환자의 인덱스 저장 
+	int j; 
+	int pIndex; 
+	
+	//구조체의 마지막 요소가 입력 값과 같으면 해당 환자 인덱스를 저장 
 	for(j=0;j<5;j++)
 	{
 		if(ip[j*8+7]==index)
 		 pIndex=j;
-	}; //받은 Index 값과 obj의 마지막 값 비교해서 같으면 
-	//그 변수에 해당하는 환자 인덱스 구하기
+	}; 
+	
 	return pIndex;
 }
 
+//환자의 나이가 범위 내에 존재하면 element들을 출력해주는 함수 
 int ifctele_getAge(void* obj, int m, int M){
 	int* ip;
 	ip=obj;
 	int i;
+	
+	//환자 5명에 대해서 
 	for(i=0;i<5;i++)
 	{
+		//환자 정보의 두번째 요소가 최대 최소 이내이면 
 		if(ip[i*8+1]>=m && ip[i*8+1]<=M)
 		{
-		  ifctele_printElement(obj, i);
+		  ifctele_printElement(obj, i); //printelement 함수로 환자 정보 출력해줌  
 		  printf("\n");
 		}  
 	}
 }
 
-void* ifctele_genElement(int index, int age, unsigned int detected_time, int history_place[N_HISTORY])
-{
-	
-	
-	
-}
+
  
